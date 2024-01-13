@@ -109,20 +109,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/graphing_text2"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:background="#03A9F4"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
-
-    <TextView
         android:id="@+id/elapsed_time"
         android:layout_width="200dp"
         android:layout_height="22dp"
@@ -200,30 +186,28 @@
 
     <TextView
         android:id="@+id/stream_monitor_graph"
-        android:layout_width="50dp"
+        android:layout_width="205dp"
         android:layout_height="20dp"
-        android:background="#E9FFFFFF"
+        android:background="#3F51B5"
         android:gravity="center"
         android:text="Graphs"
-        app:layout_constraintBottom_toBottomOf="@+id/graphing_text2"
-        app:layout_constraintEnd_toEndOf="@+id/graphing_text2"
-        app:layout_constraintHorizontal_bias="0.265"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/graphs"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
 
     <TextView
         android:id="@+id/stream_monitor_parameter"
-        android:layout_width="110dp"
+        android:layout_width="205dp"
         android:layout_height="20dp"
-        android:layout_marginEnd="60dp"
-        android:background="#E9FFFFFF"
+        android:background="#9C27B0"
         android:gravity="center"
         android:text="Gait Parameters"
-        app:layout_constraintBottom_toBottomOf="@+id/graphing_text2"
-        app:layout_constraintEnd_toEndOf="@+id/graphing_text2"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/graphs"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ScrollView
         android:id="@+id/stream_monitor_gait_view"
@@ -232,15 +216,14 @@
         android:background="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/stream_stop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/graphing_text2">
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
+            android:id="@id/realtime_summary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id = "@id/realtime_summary"
             tools:context=".SummaryFragment">
 
             <!-- TODO: Update blank fragment layout -->
@@ -306,7 +289,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
             <TextView
-                android:id="@+id/realtime_stance_time"
+                android:id="@+id/summary_stance_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
@@ -325,12 +308,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
             <TextView
-                android:id="@+id/realtime_toe_off"
+                android:id="@+id/summary_toe_off"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/textView34"
-                app:layout_constraintStart_toStartOf="@+id/realtime_stance_time"
+                app:layout_constraintStart_toStartOf="@+id/summary_stance_time"
                 app:layout_constraintTop_toTopOf="@+id/textView34"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -344,12 +327,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
             <TextView
-                android:id="@+id/realtime_heel_strike"
+                android:id="@+id/summary_heel_strike"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/textView36"
-                app:layout_constraintStart_toStartOf="@+id/realtime_toe_off"
+                app:layout_constraintStart_toStartOf="@+id/summary_toe_off"
                 app:layout_constraintTop_toTopOf="@+id/textView36"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -363,12 +346,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
             <TextView
-                android:id="@+id/realtime_dst"
+                android:id="@+id/summary_dst"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/textView38"
-                app:layout_constraintStart_toStartOf="@+id/realtime_heel_strike"
+                app:layout_constraintStart_toStartOf="@+id/summary_heel_strike"
                 app:layout_constraintTop_toTopOf="@+id/textView38" />
 
             <TextView
@@ -381,12 +364,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
             <TextView
-                android:id="@+id/realtime_sst"
+                android:id="@+id/summary_sst"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/textView40"
-                app:layout_constraintStart_toStartOf="@+id/realtime_dst"
+                app:layout_constraintStart_toStartOf="@+id/summary_dst"
                 app:layout_constraintTop_toTopOf="@+id/textView40" />
 
             <TextView
@@ -411,12 +394,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView42" />
 
             <TextView
-                android:id="@+id/realtime_stride_length"
+                android:id="@+id/summary_stride_length"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/textView43"
-                app:layout_constraintStart_toStartOf="@+id/realtime_sst"
+                app:layout_constraintStart_toStartOf="@+id/summary_sst"
                 app:layout_constraintTop_toTopOf="@+id/textView43" />
 
             <TextView
@@ -429,12 +412,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
             <TextView
-                android:id="@+id/realtime_walking_speed"
+                android:id="@+id/summary_walking_speed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/textView45"
-                app:layout_constraintStart_toStartOf="@+id/realtime_stride_length"
+                app:layout_constraintStart_toStartOf="@+id/summary_stride_length"
                 app:layout_constraintTop_toTopOf="@+id/textView45" />
 
             <TextView
@@ -447,11 +430,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
             <TextView
-                android:id="@+id/realtime_mfc"
+                android:id="@+id/summary_mfc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/realtime_walking_speed"
+                app:layout_constraintStart_toStartOf="@+id/summary_walking_speed"
                 app:layout_constraintTop_toTopOf="@+id/textView47" />
 
             <TextView
@@ -523,7 +506,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView44" />
 
             <TextView
-                android:id="@+id/summary_OXMax"
+                android:id="@+id/realtime_OXMax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
@@ -536,9 +519,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                app:layout_constraintBottom_toBottomOf="@+id/summary_OXMax"
+                app:layout_constraintBottom_toBottomOf="@+id/realtime_OXMax"
                 app:layout_constraintStart_toStartOf="@+id/textView39"
-                app:layout_constraintTop_toTopOf="@+id/summary_OXMax"
+                app:layout_constraintTop_toTopOf="@+id/realtime_OXMax"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -547,7 +530,7 @@
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/textView44"
-                app:layout_constraintStart_toStartOf="@+id/summary_OXMax"
+                app:layout_constraintStart_toStartOf="@+id/realtime_OXMax"
                 app:layout_constraintTop_toTopOf="@+id/textView44" />
 
             <TextView
@@ -587,12 +570,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
             <TextView
-                android:id="@+id/realtime_step_time"
+                android:id="@+id/summary_step_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/textView56"
-                app:layout_constraintStart_toStartOf="@+id/realtime_sst"
+                app:layout_constraintStart_toStartOf="@+id/summary_sst"
                 app:layout_constraintTop_toTopOf="@+id/textView56" />
 
             <TextView
@@ -605,12 +588,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView47" />
 
             <TextView
-                android:id="@+id/realtime_num_of_step"
+                android:id="@+id/rsummary_num_of_step"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/textView58"
-                app:layout_constraintStart_toStartOf="@+id/realtime_mfc"
+                app:layout_constraintStart_toStartOf="@+id/summary_mfc"
                 app:layout_constraintTop_toTopOf="@+id/textView58" />
 
             <androidx.recyclerview.widget.RecyclerView

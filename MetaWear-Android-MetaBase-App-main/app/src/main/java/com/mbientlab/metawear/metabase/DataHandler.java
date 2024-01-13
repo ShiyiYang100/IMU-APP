@@ -172,6 +172,7 @@ interface DataHandler {
         float last_heal_strike;
         float swing_phase;
         float stance_phase;
+        float stride_phase;
 
         //FFT filter
         ArrayList<Float> fftDataAccX;
@@ -501,6 +502,7 @@ interface DataHandler {
             last_heal_strike = 0f;
             swing_phase = 0f;
             stance_phase = 0f;
+            stride_phase = 0f;
 
             rotationVector = new double[4];
             ifRotationVectorSet = false;
@@ -1650,11 +1652,6 @@ interface DataHandler {
                         mid_swing_index = peak_index;
                         ifMidSwing = true;
                         last_heal_strike = offset;
-                        if(m.getToeOff()!= 2001f){
-                            m.addToStrideLength(offset - m.getToeOff());
-                            m.addToTotalStride();
-                        }
-                        m.setToeOff(offset);
                         special_value = peak;
                     }
                     else if((v2 < v1) && (v2 < v3) && (v2 < threshold_min)){
@@ -1669,12 +1666,20 @@ interface DataHandler {
                             m.addToNumToeOff();
                             toe_off_index = valley_index;
                             ifToeOff = true;
+
+                            if(last_toe_off != 2001f){
+                                stride_phase = offset - last_toe_off;
+                                m.addToStrideLength(stride_phase);
+                                m.addToTotalStride();
+                            }
+
                             last_toe_off = offset;
                             if(last_heal_strike != 2001f){
                                 stance_phase = offset - last_heal_strike;
                                 m.addToStance(stance_phase);
                                 m.addToTotalStance();
                             }
+
                             special_value = valley;
                         }else if (count_valley % 2 == 0  && valley < threshold_min){
                             data_num++;
@@ -2293,8 +2298,8 @@ interface DataHandler {
                         int oaTimesSize = m.getOATimes().size();
                         ArrayList<Float> ogTimes = m.getOGTimes();
                         int ogTimesSize = m.getOGTimes().size();
-                        float oaLast = oaTimes.get(oaTimesSize - 1);
-                        float ogLast = ogTimes.get(ogTimesSize - 1);
+                        float oaLast = oaTimes.get(oaTimes.size()-1);
+                        float ogLast = ogTimes.get(ogTimes.size()-1);
 
                             float prevT = m.getOAPrevTime();
                             float minT;

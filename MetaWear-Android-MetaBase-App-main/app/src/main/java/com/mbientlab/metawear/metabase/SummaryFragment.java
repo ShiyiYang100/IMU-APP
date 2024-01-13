@@ -44,7 +44,7 @@ public class SummaryFragment extends AppFragmentBase {
     private TextView ratio;
 
     private TextView swingTime, stanceTime, strideTime, toeOff, heelStrike,
-                    singleSupportTime, numStep, stepTime, OXMAX, OYMAX, OZMAX,
+                    singleSupportTime, numStep, stepTime, doubleSupportTime, OXMAX, OYMAX, OZMAX,
                     OXMIN, OYMIN, OZMIN;
     /**
      * The Position of current selected config session
@@ -84,14 +84,15 @@ public class SummaryFragment extends AppFragmentBase {
         super.onViewCreated(view, savedInstanceState);
         Button continueBut = view.findViewById(R.id.summary_next);
         swingTime = view.findViewById(R.id.summary_swing_time);
-        stanceTime = view.findViewById(R.id.realtime_stance_time);
+        stanceTime = view.findViewById(R.id.summary_stance_time);
         strideTime = view.findViewById(R.id.summary_stride_time);
-        heelStrike = view.findViewById(R.id.realtime_heel_strike);
-        toeOff = view.findViewById(R.id.realtime_toe_off);
-        singleSupportTime = view.findViewById(R.id.realtime_sst);
-        numStep = view.findViewById(R.id.realtime_num_of_step);
-        stepTime = view.findViewById(R.id.realtime_step_time);
-        OXMAX = view.findViewById(R.id.summary_OXMax);
+        heelStrike = view.findViewById(R.id.summary_heel_strike);
+        toeOff = view.findViewById(R.id.summary_toe_off);
+        singleSupportTime = view.findViewById(R.id.summary_sst);
+        numStep = view.findViewById(R.id.rsummary_num_of_step);
+        stepTime = view.findViewById(R.id.summary_step_time);
+        doubleSupportTime = view.findViewById(R.id.summary_dst);
+        OXMAX = view.findViewById(R.id.realtime_OXMax);
         OXMIN = view.findViewById(R.id.realtime_OXMin);
         OYMAX = view.findViewById(R.id.realtime_OYMax);
         OYMIN = view.findViewById(R.id.realtime_OYMin);
@@ -134,7 +135,7 @@ public class SummaryFragment extends AppFragmentBase {
         configSessionAdapter.notifyDataSetChanged();
 
         summaryItemsAdapter.summaryItems.clear();
-        summaryItemsAdapter.summaryItems.add(parameter.summaryItem);
+
         summaryItem = parameter.summaryItem;
 
         summaryItemsAdapter.notifyDataSetChanged();
@@ -147,6 +148,7 @@ public class SummaryFragment extends AppFragmentBase {
         singleSupportTime.setText(parameter.summaryItem.getTemperalParameters().getSingleSupportTime() +"");
         numStep.setText(parameter.summaryItem.getSpatialParameters().getNumOfSteps()+"");
         stepTime.setText(parameter.summaryItem.getTemperalParameters().getStepTime()+"");
+        doubleSupportTime.setText(parameter.summaryItem.getTemperalParameters().getDoubleSupportTime()+"");
 
 
         OXMAX.setText(summaryItem.getAngularParameters().getxAvgMax()+"");
@@ -161,6 +163,7 @@ public class SummaryFragment extends AppFragmentBase {
             summaryItemList.add(d.summaryItem);
         }
         Log.d("summaryfragment number", "summaryFragment number = " + summaryItemList.size());
+
         summaryItemsAdapter.summaryItems.addAll(summaryItemList);
         summaryItemsAdapter.notifyDataSetChanged();
 
